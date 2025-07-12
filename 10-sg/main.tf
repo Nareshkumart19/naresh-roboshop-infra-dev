@@ -137,16 +137,16 @@ module "bastion" {
 }
 
 
-#module "backend_alb" {
-#    #source = "../../naresh-terraform-aws-securitygroup"
-#    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
-#    project = var.project
-#    environment = var.environment
-#    
-#    sg_name = "backend-alb"
-#    sg_description = "for bakend alb"
-#    vpc_id = local.vpc_id
-#}
+module "backend_alb" {
+    #source = "../../naresh-terraform-aws-securitygroup"
+    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
+    
+    sg_name = "backend-alb"
+    sg_description = "for bakend alb"
+    vpc_id = local.vpc_id
+}
 
 #module "vpn" {
     ##source = "../../naresh-terraform-aws-securitygroup"
@@ -187,14 +187,14 @@ resource "aws_security_group_rule" "mongodb_catalogue" {
 }
 
 
-resource "aws_security_group_rule" "mongodb_user" {
-  type              = "ingress"
-  from_port         = 27017
-  to_port           = 27017
-  protocol          = "tcp"
-  source_security_group_id = module.user.sg_id
-  security_group_id = module.mongodb.sg_id
-}
+#resource "aws_security_group_rule" "mongodb_user" {
+#  type              = "ingress"
+#  from_port         = 27017
+#  to_port           = 27017
+#  protocol          = "tcp"
+#  source_security_group_id = module.user.sg_id
+#  security_group_id = module.mongodb.sg_id
+#}
 
 ## redis 
 # resource "aws_security_group_rule" "redis_bastion_ssh" {
@@ -373,14 +373,14 @@ resource "aws_security_group_rule" "catalogue_backend_alb" {
 # 
 #Backend ALB
 
-#resource "aws_security_group_rule" "backend_alb_bastion" {
-#  type              = "ingress"
-#  from_port         = 80
-#  to_port           = 80
-#  protocol          = "tcp"
-#  source_security_group_id = module.bastion.sg_id
-#  security_group_id = module.backend_alb.sg_id
-#}
+resource "aws_security_group_rule" "backend_alb_bastion" {
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  source_security_group_id = module.bastion.sg_id
+  security_group_id = module.backend_alb.sg_id
+}
 #
 #resource "aws_security_group_rule" "backend_alb_frontend" {
 #  type              = "ingress"
@@ -471,14 +471,14 @@ resource "aws_security_group_rule" "catalogue_backend_alb" {
 #}
 
 # bastion accepiting connection from my latop
-# resource "aws_security_group_rule" "bastion_laptop" {
-  # type              = "ingress"
-  # from_port         = 22
-  # to_port           = 22
-  # protocol          = "tcp"
-  # cidr_blocks       = ["0.0.0.0/0"]
-  # security_group_id = module.bastion.sg_id
-# }
+resource "aws_security_group_rule" "bastion_laptop" {
+ type              = "ingress"
+ from_port         = 22
+ to_port           = 22
+ protocol          = "tcp"
+ cidr_blocks       = ["0.0.0.0/0"]
+ security_group_id = module.bastion.sg_id
+}
 
 
  # nenu vpn nundi chyaledhu
