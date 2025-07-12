@@ -49,21 +49,20 @@ resource "terraform_data" "catalogue" {
  provisioner "remote-exec" {
    inline = [
      "chmod +x /tmp/catalogue.sh",
-     "sudo sh /tmp/catalogue.sh catalogue ${var.environment}  >> /tmp/debug.log 2>&1"
+     "sudo sh /tmp/catalogue.sh catalogue ${var.environment}"
    ]
  }
 
- 
 }
 
-#resource "aws_route53_record" "catalogue" {
-#  zone_id = var.zone_id
-#  name    = "catalogue-${var.environment}.${var.zone_name}"
-#  type    = "A"
-#  ttl     = 1
-#  records = [aws_instance.catalogue.private_ip]
-#  allow_overwrite = true
-#}
+resource "aws_route53_record" "catalogue" {
+  zone_id = var.zone_id
+  name    = "catalogue-${var.environment}.${var.zone_name}"
+  type    = "A"
+  ttl     = 1
+  records = [aws_instance.catalogue.private_ip]
+  allow_overwrite = true
+}
 
 # this working code===================
 
