@@ -1,53 +1,4 @@
-module "frontend" {
-    #source = "../../naresh-terraform-aws-securitygroup"
-    #source = "git::https://github.com/Nareshkumart19/terraform-aws-securitygroup.git?ref=main"
-    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
-    project = var.project
-    environment = var.environment
-    
-    
-    sg_name = var.frontend_sg_name
-    sg_description = var.frontend_sg_description
-    vpc_id = local.vpc_id
-    #vpc_id = "vpc-04185ddaf2bc0c619"   i did  my self
-}
-
-# Security grops=
-
-module "bastion" {
-    #source = "../../naresh-terraform-aws-securitygroup"
-    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
-    project = var.project
-    environment = var.environment
-    
-    
-    sg_name = var.bastion_sg_name
-    sg_description = var.bastion_sg_description
-    vpc_id = local.vpc_id
-}
-
-
-module "backend_alb" {
-    #source = "../../naresh-terraform-aws-securitygroup"
-    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
-    project = var.project
-    environment = var.environment
-    
-    sg_name = "backend-alb"
-    sg_description = "for bakend alb"
-    vpc_id = local.vpc_id
-}
-
-module "vpn" {
-    #source = "../../naresh-terraform-aws-securitygroup"
-    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
-    project = var.project
-    environment = var.environment
-
-    sg_name = "vpn"
-    sg_description = "for vpn"
-    vpc_id = local.vpc_id
-}
+# Security grops
 
 module "mongodb" {
     #source = "../../naresh-terraform-aws-securitygroup"
@@ -93,16 +44,111 @@ module "rabbitmq" {
     vpc_id = local.vpc_id
 }
 
-module "catalogue" {
+#module "catalogue" {
+#    #source = "../../naresh-terraform-aws-securitygroup"
+#    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+#    project = var.project
+#    environment = var.environment
+#    
+#    sg_name = "catalogue"
+#    sg_description = "for catalogue"
+#    vpc_id = local.vpc_id
+#}
+#
+#module "user" {
+#    #source = "../../naresh-terraform-aws-securitygroup"
+#    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+#    project = var.project
+#    environment = var.environment
+#    
+#    sg_name = "user"
+#    sg_description = "for user"
+#    vpc_id = local.vpc_id
+#}
+#
+#module "cart" {
+#    #source = "../../naresh-terraform-aws-securitygroup"
+#    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+#    project = var.project
+#    environment = var.environment
+#    
+#    sg_name = "cart"
+#    sg_description = "for cart"
+#    vpc_id = local.vpc_id
+#}
+#
+#module "shipping" {
+#    #source = "../../naresh-terraform-aws-securitygroup"
+#    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+#    project = var.project
+#    environment = var.environment
+#    
+#    sg_name = "shipping"
+#    sg_description = "for shipping"
+#    vpc_id = local.vpc_id
+#}
+#module "payment" {
+#    #source = "../../naresh-terraform-aws-securitygroup"
+#    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+#    project = var.project
+#    environment = var.environment
+#    
+#    sg_name = "payment"
+#    sg_description = "for payment"
+#    vpc_id = local.vpc_id
+#}
+
+
+module "frontend" {
+    #source = "../../naresh-terraform-aws-securitygroup"
+    #source = "git::https://github.com/Nareshkumart19/terraform-aws-securitygroup.git?ref=main"
+    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
+    
+    
+    sg_name = var.frontend_sg_name
+    sg_description = var.frontend_sg_description
+    vpc_id = local.vpc_id
+    #vpc_id = "vpc-04185ddaf2bc0c619"   i did  my self
+}
+
+
+
+module "bastion" {
     #source = "../../naresh-terraform-aws-securitygroup"
     source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
     project = var.project
     environment = var.environment
     
-    sg_name = "catalogue"
-    sg_description = "for catalogue"
+    
+    sg_name = var.bastion_sg_name
+    sg_description = var.bastion_sg_description
     vpc_id = local.vpc_id
 }
+
+
+module "backend_alb" {
+    #source = "../../naresh-terraform-aws-securitygroup"
+    source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+    project = var.project
+    environment = var.environment
+    
+    sg_name = "backend-alb"
+    sg_description = "for bakend alb"
+    vpc_id = local.vpc_id
+}
+
+#module "vpn" {
+    ##source = "../../naresh-terraform-aws-securitygroup"
+    #source = "git::https://github.com/Nareshkumart19/naresh-terraform-aws-securitygroup.git?ref=main"
+    #project = var.project
+    #environment = var.environment
+##
+    #sg_name = "vpn"
+    #sg_description = "for vpn"
+    #vpc_id = local.vpc_id
+#}
 
 
 
