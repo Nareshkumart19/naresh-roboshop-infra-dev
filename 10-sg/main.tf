@@ -261,14 +261,14 @@ resource "aws_security_group_rule" "rabbitmq_bastion_ssh" {
 
 #application servers
 
-resource "aws_security_group_rule" "catalogue_backend_alb" {
-  type              = "ingress"
-  from_port         = 8080
-  to_port           = 8080
-  protocol          = "tcp"
-  source_security_group_id = module.backend_alb.sg_id  
-  security_group_id = module.catalogue.sg_id
-}
+#resource "aws_security_group_rule" "catalogue_backend_alb" {
+#  type              = "ingress"
+#  from_port         = 8080
+#  to_port           = 8080
+#  protocol          = "tcp"
+#  source_security_group_id = module.backend_alb.sg_id  
+#  security_group_id = module.catalogue.sg_id
+#}
 
 # nenu vpn nundi chyaledhu
 
@@ -290,29 +290,29 @@ resource "aws_security_group_rule" "catalogue_backend_alb" {
 #  #security_group_id = module.catalogue.sg_id
 #}
 
-resource "aws_security_group_rule" "catalogue_bastion_ssh" {
-  type              = "ingress"
-  from_port         = 22
-  to_port           = 22
-  protocol          = "tcp"
-  source_security_group_id = module.bastion.sg_id  
-  security_group_id = module.catalogue.sg_id
-}
-
-resource "aws_security_group_rule" "catalogue_bastion_http" {
-  type              = "ingress"
-  from_port         = 8080
-  to_port           = 8080
-  protocol          = "tcp"
-  source_security_group_id = module.bastion.sg_id  
-  security_group_id = module.catalogue.sg_id
-}
-
-resource "aws_security_group_rule" "mongodb_catalogue" {
-  type              = "ingress"
-  from_port         = 27017
-  to_port           = 27017
-  protocol          = "tcp"
-  source_security_group_id = module.catalogue.sg_id  
-  security_group_id = module.mongodb.sg_id
-}
+#resource "aws_security_group_rule" "catalogue_bastion_ssh" {
+#  type              = "ingress"
+#  from_port         = 22
+#  to_port           = 22
+#  protocol          = "tcp"
+#  source_security_group_id = module.bastion.sg_id  
+#  security_group_id = module.catalogue.sg_id
+#}
+#
+#resource "aws_security_group_rule" "catalogue_bastion_http" {
+#  type              = "ingress"
+#  from_port         = 8080
+#  to_port           = 8080
+#  protocol          = "tcp"
+#  source_security_group_id = module.bastion.sg_id  
+#  security_group_id = module.catalogue.sg_id
+#}
+#
+#resource "aws_security_group_rule" "mongodb_catalogue" {
+#  type              = "ingress"
+#  from_port         = 27017
+#  to_port           = 27017
+#  protocol          = "tcp"
+#  source_security_group_id = module.catalogue.sg_id  
+#  security_group_id = module.mongodb.sg_id
+#}
