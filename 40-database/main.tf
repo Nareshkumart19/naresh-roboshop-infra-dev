@@ -103,7 +103,7 @@ resource "aws_instance" "mysql" {
   instance_type = "t3.micro"
   vpc_security_group_ids = [local.mysql_sg_id]
   subnet_id = local.database_subnet_id
-  #iam_instance_profile = "EC2RoleFetchSSMparams"
+  iam_instance_profile = "EC2RoleFetchSSMparams"
 
 
   tags = merge(
