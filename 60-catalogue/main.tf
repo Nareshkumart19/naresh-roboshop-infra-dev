@@ -49,9 +49,11 @@ resource "terraform_data" "catalogue" {
  provisioner "remote-exec" {
    inline = [
      "chmod +x /tmp/catalogue.sh",
-     "sudo sh /tmp/catalogue.sh catalogue ${var.environment}"
+     "sudo sh /tmp/catalogue.sh catalogue ${var.environment}  >> /tmp/debug.log 2>&1"
    ]
  }
+
+ 
 }
 
 #resource "aws_route53_record" "catalogue" {
