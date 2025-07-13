@@ -38,7 +38,7 @@ resource "terraform_data" "catalogue" {
  ]
  provisioner "file" {
    source      = "catalogue.sh"
-   destination = "/home/ec2-user/catalogue.sh"
+   destination = "/tmp/catalogue.sh"
  }
  connection {
    type     = "ssh"
@@ -48,8 +48,8 @@ resource "terraform_data" "catalogue" {
  }
  provisioner "remote-exec" {
    inline = [
-     "chmod +x /home/ec2-user/catalogue.sh",
-     "sudo sh /home/ec2-user/catalogue.sh catalogue ${var.environment}"
+     "chmod +x /tmp/catalogue.sh",
+     "sudo sh /tmp/catalogue.sh catalogue ${var.environment}"
    ]
  }
 
