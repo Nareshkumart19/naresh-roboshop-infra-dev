@@ -2,7 +2,7 @@
 
 component=$1
 dnf install ansible -y 
-ansible-pull -U https://github.com/Nareshkumart19/naresh-roles-roboshop--ansible-tf.git -e component=$1 -e env=$2  main.yaml
+ansible-pull -U https://github.com/Nareshkumart19/naresh-roles-roboshop-ansible--tf2.git -e component=$1 -e env=$2  main.yaml
 
 
 
